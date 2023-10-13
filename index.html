@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <script>
+            function sidebar(){
+                document.getElementById("sidebar").classList.toggle("open");
+            }
+        </script>
+        <style>
+            #sidebar {
+                left: -15rem;
+                transition: left 1s;
+            }
+            #sidebar.open {
+                left: 0;
+                transition: left 1s;
+            }
+        </style>
+    </head>
+    <body>
+        <header class="w3-red" style="display:sticky">
+            <button href="#" class="w3-button" style="aspect-ratio: 1/1" onclick="sidebar()">
+                <i class="material-icons">menu</i>
+            </button>
+        </header>
+
+        <nav class="w3-bar-block w3-sidebar w3-mobile w3-orange" id="sidebar">
+            <a href="#" class="w3-bar-item w3-button w3-hover-yellow">FirstElection</a>
+            <a href="#" class="w3-bar-item w3-button w3-hover-yellow">What</a>
+        </nav>
+    </body>
+</html>
