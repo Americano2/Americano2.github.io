@@ -11,13 +11,10 @@
         </script>
         <style>
             #sidebar {
-                width:20%;
-                left: 100%;
-                transition: left 1.33s;
+                display: none;
             }
             #sidebar.open {
-                left: 0;
-                transition: left 0.66s;
+                display: block;
             }
         </style>
     </head>
@@ -28,9 +25,11 @@
             </button>
         </header>
 
-        <span class="w3-bar-block w3-sidebar w3-orange" id="sidebar">
-            <a href="#" class="w3-bar-item w3-button w3-hover-yellow">FirstElection</a>
-            <a href="#" class="w3-bar-item w3-button w3-hover-yellow">What</a>
-        </span>
+        <div class="w3-row">
+        <nav class="w3-bar-block w3-sidebar w3-mobile w3-quater w3-orange" id="sidebar">
+            <a href="#" class="w3-bar-item w3-button w3-hover-yellow w3-mobile">FirstElection</a>
+            <a href="#" class="w3-bar-item w3-button w3-hover-yellow w3-mobile">What</a>
+        </nav>
+        </div>
     </body>
 </html>
