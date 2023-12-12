@@ -1,5 +1,4 @@
 function addElement(pageUrl){
-    window.location.href = "electionclassic";
 }
 function checkquantity(){
 	let input = document.getElementById("votesInp");
