@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ua">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="indexstyle.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="index.js"></script>
+    <title>Класичне голосування</title>
+</head>
+<body>
+    <hr class="w3-border">
+
+	<div class="w3-cell-row">
+	<!-- Кандидати -->
+	<div class="w3-cell w3-container w3-mobile w3-section">
+    <label for="input">Введіть кількість кандидатів:</label>
+    <input type="number" class="w3-input w3-border w3-section" id="canditatesInp" min="1" placeholder="Кількість кандитатів">
+	</div>
+
+	<!-- Голосувальники -->
+	<div class="w3-cell w3-container w3-mobile w3-section w3-border-left">
+    <label for="input">Введіть кількість голосувальників та кандитатів або оберіть:</label>
+    <input type="number" class="w3-input w3-border w3-section" id="votesInp" min="1" placeholder="Кількість голосувальників">
+	<div class="w3-right">
+
+    <input type="radio" class="w3-radio electionquantity" name="electionquantity" value="29">
+    <label>29</label>
+    <input type="radio" class="w3-radio electionquantity" name="electionquantity" value="27">
+    <label>27</label>
+    <input type="radio" class="w3-radio electionquantity" name="electionquantity" value="54">
+    <label>54</label>
+	</div>
+	</div>
+	</div>
+
+    <hr class="w3-border">
+	
+	<div class = "w3-block">
+    		<div class="w3-bar w3-border">
+		<button class="w3-bar-item w3-button" id="turnend">Закінчити раунд</button>
+    		<button class="w3-bar-item w3-button" id="cleanall">Очистити</button>
+		<div class="w3-bar-item">Кількість голосів: <span class="w3-badge w3-light-grey" id="votesvalue">0</span></div>
+		<button class="w3-bar-item w3-button w3-right" id="startvotes">Розпочати голосування</button>
+		</div>
+	</div>
+
+	<table class="w3-table w3-centered w3-responsive" id="tableoutput">
+	</table>
+
+</body>
+</html>
+
