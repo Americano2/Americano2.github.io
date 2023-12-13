@@ -202,7 +202,7 @@ $("#closemodal").click(function(){
     });
 
 //Довгий лівий
-$('#tableoutput').on('mousedown', '.Candidates', function(event) {
+$('#tableoutput').on('touchstart mousedown', '.Candidates', function(event) {
     if (event.which === 1) {
         let leftVotes = parseInt($("#votesvalue").text());
         let currentValue = parseInt($(this).text());
@@ -222,7 +222,7 @@ $('#tableoutput').on('mousedown', '.Candidates', function(event) {
 });
 
 //Лівий клік
-$('#tableoutput').on('mouseup', '.Candidates', function(event) {
+$('#tableoutput').on('touchend mouseup', '.Candidates', function(event) {
     if (event.which === 1 && longorshort == 0) {
         // Лівий клік (1)
 	let leftVotes = parseInt($("#votesvalue").text());
