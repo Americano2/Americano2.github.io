@@ -1,117 +1,119 @@
 let sum = 0;
 $(function() {
-	$("#cleanall").click(function(){
-		const tableoutput = $("#tableoutput");
-		const leftvotes = $("#votesvalue");
+    $("#cleanall").click(function(){
+        const tableoutput = $("#tableoutput");
+        const leftvotes = $("#votesvalue");
 
-		leftvotes.text(0);
-		tableoutput.empty();
-	});
+        leftvotes.text(0);
+        tableoutput.empty();
+    });
+
     // Початок голосування
-	$("#votesInp").on("input", function () {
-        	$("input[name='electionquantity']").prop('checked', false);
-    	});
+    $("#votesInp").on("input", function () {
+        $("input[name='electionquantity']").prop('checked', false);
+    });
 
-	$(".electionquantity").click(function(){
-    		let input = $("#votesInp");
-    		input.val('');
-	});
+    $(".electionquantity").click(function(){
+        let input = $("#votesInp");
+        input.val('');
+    });
 
     $("#startvotes").click(function() {
         const inputCandidates = $("#canditatesInp").val();
         const container = $("#tableoutput");
-        let inputVotes = $("#votesInp").val();;
-	const checkedValue = $("input[name='electionquantity']:checked").val();
+        let inputVotes = $("#votesInp").val();
+        const checkedValue = $("input[name='electionquantity']:checked").val();
 
-	const containerVotes = $("#votesvalue");
+        const containerVotes = $("#votesvalue");
 
-	if (checkedValue !== undefined) {
-        	inputVotes = checkedValue;
-    	}
-	
-	if(inputVotes - inputCandidates > 0){
-        // Очищення таблиці перед створенням нового вмісту
-        	container.empty();
+        if (checkedValue !== undefined) {
+            inputVotes = checkedValue;
+        }
 
-        	let newHeader = $("<tr>");
-        	let newRow = $("<tr>");
-        	let candidate, c = 0;
+        if(inputVotes - inputCandidates > 0){
+            // Очищення таблиці перед створенням нового вмісту
+            container.empty();
 
-        	for (let i = 0; i < inputCandidates; i++) {
-            		// Додавання комірки типу "Candidates" до рядка
-            		candidate = $('<button class="buttonCandidate w3-button w3-border-black w3-border w3-padding Candidates">0</button>');
+            let newHeader = $("<tr>");
+            let newRow = $("<tr>");
+            let candidate, c = 0;
 
-            		c++
-            		let cellHeader = $("<td>").text("Кад." + c);
-            		let cell = $("<td>");
-            		cell.append(candidate);
+            for (let i = 0; i < inputCandidates; i++) {
+                // Додавання комірки типу "Candidates" до рядка
+                candidate = $('<button class="buttonCandidate w3-button w3-border-black w3-border w3-padding Candidates">0</button>');
 
-            		// Додавання комірки до рядка
-            		newHeader.append(cellHeader);
-            		newRow.append(cell);
-        	}
+                c++
+                let cellHeader = $("<td>").text("Кад." + c);
+                let cell = $("<td>");
+                cell.append(candidate);
 
-        	// Додавання нового рядка до тіла таблиці
-        	container.append(newHeader);
-        	container.append(newRow);
+                // Додавання комірки до рядка
+                newHeader.append(cellHeader);
+                newRow.append(cell);
+            }
 
-        	containerVotes.text(inputVotes - inputCandidates);
-	} else{
-		container.empty();
-        	containerVotes.text(0);
-		alert("Голосувальників має бути більше ніж кандитатів")
-	}
+            // Додавання нового рядка до тіла таблиці
+            container.append(newHeader);
+            container.append(newRow);
+
+            containerVotes.text(inputVotes - inputCandidates);
+        } else {
+            container.empty();
+            containerVotes.text(0);
+            alert("Голосувальників має бути більше ніж кандитатів");
+        }
     });
 
     $("#turnend").click(function() {
-	const containerVotes = $("#votesvalue");
-	let leftVotes = parseInt($("#votesvalue").text());
+        const containerVotes = $("#votesvalue");
+        let leftVotes = parseInt($("#votesvalue").text());
 
-	if(leftVotes > 0){
-		alert("Ще не всі проголосували!");
+        if(leftVotes > 0){
+            alert("Ще не всі проголосували!");
+        }
+        else {
+            let candidatebutton = $(".buttonCandidate").text();
+            let tableout = $("#tableoutput");
+
+            // Знаходження всіх кнопок з класом "Candidates"
+            let buttons = $(".Candidates");
+
+            // Ініціалізація змінних для найменшого тексту та відповідної кнопки
+            let minText = null;
+            let pospoint = 0;
+            const placemin = [];
+            const pos = [];
+
+            // Перебір кожної кнопки
+            buttons.each(function() {
+                // Отримання тексту поточної кнопки
+                let buttonText = $(this).text();
+
+                pospoint += 1;
+                pos.push(parseInt(pospoint));
+                placemin.push(parseInt(buttonText));
+
+                if (minText === null || buttonText < minText) {
+                    minText = buttonText;
+                }
+            });
+
+            let n = 0;
+            let rem;
+            let rem1, rem2 = 0;
+            for(let i = 0; i < pos.length; i++){
+                if(parseInt(placemin[i]) === parseInt(minText)){
+                    rem = parseInt(pos[i])-parseInt(n);
+                    let del = "td:nth-child(" + rem + ")";
+                    tableout.find(del).remove();
+                    n++;
+                    rem2 += parseInt(placemin[i]);
+                    rem2 += 1;
+                }
+            }
+            rem1 = rem2;
+            containerVotes.text(rem1);
 	}
-	else{
-	let candidatebutton = $(".candidatebutton").text()
-        let tableout = $("#tableoutput");
-	
-	// Знаходження всіх кнопок з класом "yourButtonClass"
-	let buttons = $(".Candidates");
-
-	// Ініціалізація змінних для найменшого тексту та відповідної кнопки
-	let minText = null;
-	let pospoint = 0;
-	const placemin = [];
-	const pos = [];
-
-	// Перебір кожної кнопки
-	buttons.each(function() {
-    		// Отримання тексту поточної кнопки
-    		let buttonText = $(this).text();
-
-		pospoint += 1;
-		pos.push(parseInt(pospoint));
-		placemin.push(parseInt(buttonText));
-
-		if (minText === null || buttonText < minText) {
-        		minText = buttonText;
-    		}
-	});
-	
-	let n = 0;
-	let rem;
-	let rem1, rem2 = 0;
-	for(let i = 0; i < pos.length; i++){
-		if(parseInt(placemin[i]) === parseInt(minText)){
-			rem = parseInt(pos[i])-parseInt(n);
-			let del = "td:nth-child(" + rem + ")";
-			tableout.find(del).remove();
-			n++;
-			rem2 += parseInt(placemin[i]);
-			rem2 += 1;
-		}
-	}
-	rem1 = rem2;
-	containerVotes.text(rem1);
     });
 
     $("#tableoutput").on("mousedown", ".Candidates", function(event) {
@@ -174,4 +176,3 @@ $(function() {
         containerVotes.text(leftVotes);
     });
 });
-
