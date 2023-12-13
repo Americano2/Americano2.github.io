@@ -2,3 +2,6 @@
 	width: 70px;
 	user-select: none;
 }
+.Candidate {
+	user-select: none;
+}
