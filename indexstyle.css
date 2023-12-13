@@ -1,36 +1,4 @@
-div.boxItem { 
-  display: inline-block;
-  border: 1px solid black;
-  padding: 1em;  
-  margin-right: 10px;
-  position:relative;
-}
-
-.boxItem:before,
-.boxItem:after
-{
-  content:'';
-  width:10px;/* size of your margin */
-  border-bottom:1px solid;
-  position:absolute;
-  top:50%;
-
-}
-:after {
-  left:100%;
-}
-:before {
-  right:100%;
-}
-.boxItem:first-of-type:before,
-.boxItem:last-of-type:after {
-  display:none;
-}
-.myBox {
-  white-space:nowrap; 
-/* */ text-align:center;
-  }
-
 .buttonCandidate {
 	width: 70px;
+	user-select: none;
 }
