@@ -79,7 +79,7 @@ $(function() {
             let buttons = $(".Candidates");
 
             // Ініціалізація змінних для найменшого тексту та відповідної кнопки
-            let minText = null;
+            let minText = 0;
             let pospoint = 0;
             const placemin = [];
             const pos = [];
