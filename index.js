@@ -65,56 +65,65 @@ $(function() {
     });
 
     $("#turnend").click(function() {
-        const containerVotes = $("#votesvalue");
-        let leftVotes = parseInt($("#votesvalue").text());
+    const containerVotes = $("#votesvalue");
+    let leftVotes = parseInt($("#votesvalue").text());
 
-        if(leftVotes > 0){
-            alert("Ще не всі проголосували!");
-        }
-        else {
-            let candidatebutton = $(".buttonCandidate").text();
-            let tableout = $("#tableoutput");
+    if(leftVotes > 0){
+        alert("Ще не всі проголосували!");
+    }
+    else {
+        let candidatebutton = $(".buttonCandidate").text();
+        let tableout = $("#tableoutput");
 
-            // Знаходження всіх кнопок з класом "Candidates"
-            let buttons = $(".Candidates");
+        // Знаходження всіх кнопок з класом "Candidates"
+        let buttons = $(".Candidates");
 
-            // Ініціалізація змінних для найменшого тексту та відповідної кнопки
-            let minText = 0;
-            let pospoint = 0;
-            const placemin = [];
-            const pos = [];
+	let del = null;
+	let n = 0;
+	let rem = 0;
+	let votesback = 0;
 
-            // Перебір кожної кнопки
-            buttons.each(function() {
-                // Отримання тексту поточної кнопки
-                let buttonText = $(this).text();
+        // Ініціалізація змінних для мінімального значення та відповідних кнопок
+        let minText = null;
+        let minButtons = [];
+	let minpos = [];
+	let pos = 0;
 
-                pospoint += 1;
-                pos.push(parseInt(pospoint));
-                placemin.push(parseInt(buttonText));
+        // Перебір кожної кнопки
+        for (let i = 0; i < buttons.length; i++) {
+    	// Отримуємо текст поточної кнопки
+    	let buttonText = parseInt($(buttons[i]).text());
+	pos += 1;
 
-                if (minText === null || buttonText < minText) {
-                    minText = buttonText;
-                }
-            });
-
-            let n = 0;
-            let rem;
-            let rem1, rem2 = 0;
-            for(let i = 0; i < pos.length; i++){
-                if(parseInt(placemin[i]) === parseInt(minText)){
-                    rem = parseInt(pos[i])-parseInt(n);
-                    let del = "td:nth-child(" + rem + ")";
-                    tableout.find(del).remove();
-                    n++;
-                    rem2 += parseInt(placemin[i]);
-                    rem2 += 1;
-                }
-            }
-            rem1 = rem2;
-            containerVotes.text(rem1);
+    	if (minText === null || buttonText < minText) {
+        	minText = buttonText;
+        	minButtons = [$(buttons[i])];
+		minpos = [pos];
+    	} else if (buttonText === minText) {
+        	minButtons.push($(buttons[i]));
+		minpos.push(pos);
+    	}
 	}
-    });
+
+        if (minButtons.length > 0) {
+            // Здійснюємо видалення всіх стовпців з мінімальним значенням
+            minButtons.forEach(function(minButton) {
+                votesback += parseInt(minButton.text());
+            });
+	    
+ 	    minpos.forEach(function(minpo){
+		rem = parseInt(minpo) - parseInt(n);
+		del = "td:nth-child(" + rem + ")";
+		tableout.find(del).remove();
+		n += 1;
+	    });
+
+            containerVotes.text(votesback+minButtons.length);
+        }
+    }
+});
+
+
 
     $("#tableoutput").on("mousedown", ".Candidates", function(event) {
         let leftVotes = parseInt($("#votesvalue").text());
