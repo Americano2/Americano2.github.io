@@ -217,7 +217,7 @@ $('#tableoutput').on('mousedown', '.Candidates', function(event) {
             }
 		const containerVotes = $("#votesvalue");
             containerVotes.text(leftVotes);
-        }, 500); // Час у мілісекундах
+        }, 200); // Час у мілісекундах
     }
 });
 
