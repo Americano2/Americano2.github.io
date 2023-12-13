@@ -202,7 +202,7 @@ $("#closemodal").click(function(){
     });
 
 //Довгий лівий
-$('#tableoutput').on('contextmenu touchstart mousedown', '.Candidates', function(event) {
+$('#tableoutput').on('touchstart mousedown', '.Candidates', function(event) {
 	event.preventDefault();
     if (event.which === 1) {
         let leftVotes = parseInt($("#votesvalue").text());
