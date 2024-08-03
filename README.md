@@ -1,2 +1,2 @@
 # Americano2.github.io
-A little site with different systems of elections
+A site with mini-game with plush toys
